@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prashant Kumar Singh — Portfolio
+
+A world-class personal brand website for a Software Engineer & Applied AI Engineer. Built with premium aesthetics inspired by Linear, Vercel, and Stripe.
+
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)
+
+## Features
+
+- **Premium Design** — Dark-mode-first, Linear-inspired aesthetics with subtle animations
+- **Full Sections** — Hero, About, Experience, Projects, Skills, GitHub Dashboard, Achievements, Testimonials, Contact
+- **Interactive UX** — Command palette (⌘K), theme toggle, cursor glow, scroll animations
+- **API Integrations** — GitHub API, LeetCode Stats API with graceful fallbacks
+- **SEO & Performance** — Open Graph images, sitemap, structured data, PWA manifest
+- **Analytics** — Vercel Analytics + Google Analytics support
+
+## Tech Stack
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- Shadcn UI (Radix primitives)
+- Lucide Icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm or pnpm
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SITE_URL` | Production site URL for SEO |
+| `NEXT_PUBLIC_GITHUB_USERNAME` | Your GitHub username |
+| `NEXT_PUBLIC_LEETCODE_USERNAME` | Your LeetCode username |
+| `GITHUB_TOKEN` | Optional GitHub token for API rate limits |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics measurement ID |
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+### Personal Info
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Edit `src/lib/constants.ts` for name, title, links, and contact info.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Content
 
-## Deploy on Vercel
+- **Experience & Timeline** — `src/lib/data/experience.ts`
+- **Projects** — `src/lib/data/projects.ts`
+- **Skills** — `src/lib/data/skills.ts`
+- **Testimonials** — `src/lib/data/testimonials.ts`
+- **Achievements** — `src/lib/data/achievements.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Assets
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Replace `public/resume.pdf` with your resume
+- Add project screenshots to `public/projects/`
+- Replace hero portrait placeholder in `src/components/sections/hero.tsx`
+
+## Deployment (Vercel)
+
+1. Push your code to GitHub
+2. Import the repository on [vercel.com](https://vercel.com)
+3. Add environment variables in Vercel dashboard
+4. Deploy
+
+```bash
+# Or deploy via CLI
+npm i -g vercel
+vercel
+```
+
+Vercel Analytics is enabled automatically via `@vercel/analytics`.
+
+## Project Structure
+
+```
+src/
+├── app/                  # Next.js App Router
+│   ├── api/              # API routes (GitHub, LeetCode, Contact)
+│   ├── layout.tsx        # Root layout with SEO & providers
+│   └── page.tsx          # Main page
+├── components/
+│   ├── layout/           # Navbar, Footer, Command Palette, etc.
+│   ├── sections/         # Page sections
+│   ├── shared/           # Reusable components
+│   └── ui/               # Shadcn UI components
+├── lib/
+│   ├── data/             # Content data
+│   ├── constants.ts      # Site configuration
+│   └── utils.ts          # Utilities
+└── types/                # TypeScript types
+```
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `⌘K` / `Ctrl+K` | Open command palette |
+
+## License
+
+MIT
+
+---
+
+Built with precision by **Prashant Kumar Singh**
