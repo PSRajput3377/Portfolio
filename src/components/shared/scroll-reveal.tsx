@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { EASE_OUT_EXPO, springClean, viewport } from "@/lib/motion";
+import { springClean, viewport } from "@/lib/motion";
 
 interface ScrollRevealProps {
   children: React.ReactNode;

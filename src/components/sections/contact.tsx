@@ -23,7 +23,7 @@ const socialLinks = [
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ export function Contact() {
 
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", message: "", company: "" });
       } else {
         setStatus("error");
       }
@@ -105,6 +105,18 @@ export function Contact() {
         <ScrollReveal className="lg:col-span-3" delay={0.1}>
           <GlowCard className="p-6 sm:p-8">
             <form onSubmit={handleSubmit}>
+              {/* Honeypot — hidden from users, filled only by bots. */}
+              <div className="absolute -left-[9999px]" aria-hidden>
+                <label htmlFor="company">Company</label>
+                <input
+                  id="company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.company}
+                  onChange={(e) => setForm({ ...form, company: e.target.value })}
+                />
+              </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-2 block text-sm font-medium">

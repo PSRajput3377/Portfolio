@@ -16,8 +16,18 @@ const fallbackStats: GitHubStats = {
   repos: [
     {
       id: 1,
+      name: "ForgeAI",
+      description: "Autonomous multi-agent AI software engineering platform",
+      html_url: "https://github.com/psrajput3377/ForgeAI",
+      stargazers_count: 0,
+      language: "Python",
+      fork: false,
+      updated_at: new Date().toISOString(),
+    },
+    {
+      id: 2,
       name: "sorting-algorithm-visualization-",
-      description: "Interactive sorting algorithm visualizer",
+      description: "Interactive sorting algorithm visualizer (AlgoSortify)",
       html_url: "https://github.com/psrajput3377/sorting-algorithm-visualization-",
       stargazers_count: 1,
       language: "Python",
@@ -25,7 +35,7 @@ const fallbackStats: GitHubStats = {
       updated_at: new Date().toISOString(),
     },
     {
-      id: 2,
+      id: 3,
       name: "SensAI",
       description: "AI-powered career coaching platform",
       html_url: "https://github.com/psrajput3377/SensAI",
@@ -35,7 +45,7 @@ const fallbackStats: GitHubStats = {
       updated_at: new Date().toISOString(),
     },
     {
-      id: 3,
+      id: 4,
       name: "DeepFake-AI-Detector",
       description: "Deep learning deepfake detection system",
       html_url: "https://github.com/psrajput3377/DeepFake-AI-Detector",

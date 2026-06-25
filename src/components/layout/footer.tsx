@@ -8,7 +8,6 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 
 export function Footer() {
-  const year = new Date().getFullYear();
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -55,15 +54,6 @@ export function Footer() {
               </a>
             ))}
           </div>
-        </div>
-
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
-            © {year} {SITE_CONFIG.name}. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Designed & built with Next.js · Framer Motion
-          </p>
         </div>
       </div>
 

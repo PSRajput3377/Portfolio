@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import type { Project } from "@/types";
 import { BorderBeam } from "@/components/shared/border-beam";
@@ -10,9 +10,14 @@ interface ProjectPreviewProps {
   project: Project;
 }
 
+function isRealImage(src: string) {
+  return /\.(png|jpe?g|webp|gif)$/i.test(src);
+}
+
 export function ProjectPreview({ project }: ProjectPreviewProps) {
   const url = project.demo || project.github;
   const displayUrl = project.demo?.replace(/^https?:\/\//, "") || "github.com";
+  const screenshot = project.images.find(isRealImage);
 
   const content = (
     <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card shadow-xl transition-all duration-500 group-hover:border-accent/30 group-hover:shadow-[0_12px_48px_-20px_var(--glow)]">
@@ -29,37 +34,45 @@ export function ProjectPreview({ project }: ProjectPreviewProps) {
         </div>
       </div>
 
-      <div
-        className={cn(
-          "relative flex aspect-[16/10] flex-col items-center justify-center overflow-hidden bg-gradient-to-br p-8",
-          project.gradient
-        )}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-grid opacity-20" />
-        <motion.div
-          className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-background/10 text-3xl font-bold text-foreground backdrop-blur-md ring-1 ring-white/10"
-          whileHover={{ scale: 1.04 }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      {screenshot ? (
+        <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+          <Image
+            src={screenshot}
+            alt={`${project.title} screenshot`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+      ) : (
+        <div
+          className={cn(
+            "relative flex aspect-[16/10] flex-col items-center justify-center overflow-hidden bg-gradient-to-br p-8",
+            project.gradient
+          )}
         >
-          {project.title.charAt(0)}
-        </motion.div>
-        <p className="relative mt-4 text-center text-sm font-medium text-foreground/90">
-          {project.title}
-        </p>
-        {project.metrics && (
-          <div className="relative mt-4 flex flex-wrap justify-center gap-2">
-            {project.metrics.map((m) => (
-              <span
-                key={m.label}
-                className="rounded-full border border-white/10 bg-background/20 px-3 py-1 text-xs backdrop-blur-sm"
-              >
-                {m.value} {m.label}
-              </span>
-            ))}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.08),transparent_50%)]" />
+          <div className="absolute inset-0 bg-grid opacity-20" />
+          <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-background/10 text-3xl font-bold text-foreground backdrop-blur-md ring-1 ring-white/10">
+            {project.title.charAt(0)}
           </div>
-        )}
-      </div>
+          <p className="relative mt-4 text-center text-sm font-medium text-foreground/90">
+            {project.title}
+          </p>
+          {project.metrics && (
+            <div className="relative mt-4 flex flex-wrap justify-center gap-2">
+              {project.metrics.map((m) => (
+                <span
+                  key={m.label}
+                  className="rounded-full border border-white/10 bg-background/20 px-3 py-1 text-xs backdrop-blur-sm"
+                >
+                  {m.value} {m.label}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 

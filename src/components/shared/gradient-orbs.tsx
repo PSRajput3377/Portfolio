@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 export function GradientOrbs() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>

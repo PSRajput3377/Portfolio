@@ -36,10 +36,10 @@ export function Hero() {
       <Particles />
 
       <motion.div
-        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 px-4 py-28 sm:px-6 lg:flex-row lg:items-center lg:gap-20"
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-4 py-28 sm:px-6 md:flex-row md:items-center md:gap-12 lg:gap-20"
         style={{ opacity, y }}
       >
-        <Stagger className="flex-1 text-center lg:text-left">
+        <Stagger className="flex-1 text-center md:text-left">
           <StaggerItem>
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/50 px-3.5 py-1.5 text-xs text-muted-foreground backdrop-blur-md">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -63,7 +63,7 @@ export function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            <div className="mt-4 h-px w-16 bg-gradient-to-r from-accent/80 to-transparent lg:mx-0 mx-auto" />
+            <div className="mt-4 h-px w-16 bg-gradient-to-r from-accent/80 to-transparent md:mx-0 mx-auto" />
           </StaggerItem>
 
           <StaggerItem>
@@ -79,14 +79,14 @@ export function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            <div className="mt-3 flex items-center justify-center gap-2 text-sm text-muted-foreground lg:justify-start">
+            <div className="mt-3 flex items-center justify-center gap-2 text-sm text-muted-foreground md:justify-start">
               <MapPin className="h-3.5 w-3.5 text-accent" />
               {SITE_CONFIG.location}
             </div>
           </StaggerItem>
 
           <StaggerItem>
-            <div className="mt-7 grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:max-w-md">
+            <div className="mt-7 grid grid-cols-2 gap-2.5 sm:grid-cols-4 md:max-w-md">
               {[
                 { value: "9.05", label: "CGPA" },
                 { value: "300+", label: "DSA" },
@@ -107,7 +107,7 @@ export function Hero() {
           </StaggerItem>
 
           <StaggerItem>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5 md:justify-start">
               <Magnetic strength={0.2}>
                 <Button variant="accent" size="lg" className="shine" onClick={() => scrollTo("#projects")}>
                   <FolderOpen />
