@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { EASE_OUT_EXPO } from "@/lib/motion";
+import { EASE_OUT_EXPO, springClean } from "@/lib/motion";
 
 interface SectionHeaderProps {
   label: string;
@@ -19,47 +19,37 @@ export function SectionHeader({
   const words = title.split(" ");
 
   return (
-    <div
-      className={
-        align === "center"
-          ? "mx-auto max-w-2xl text-center"
-          : "max-w-2xl"
-      }
-    >
+    <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <motion.div
         className="mb-4 flex items-center gap-3"
         style={{ justifyContent: align === "center" ? "center" : "flex-start" }}
-        initial={{ opacity: 0, x: -20 }}
+        initial={{ opacity: 0, x: -12 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+        transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
       >
         <motion.span
-          className="h-px w-8 bg-accent"
+          className="h-px w-10 bg-gradient-to-r from-accent to-accent/0"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1, ease: EASE_OUT_EXPO }}
+          transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
           style={{ originX: 0 }}
         />
-        <p className="text-sm font-medium tracking-[0.2em] text-accent uppercase">
+        <p className="text-xs font-medium tracking-[0.25em] text-accent uppercase">
           {label}
         </p>
       </motion.div>
 
-      <h2 className="font-display text-3xl font-normal tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+      <h2 className="font-display text-3xl font-normal tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
         {words.map((word, i) => (
           <motion.span
             key={`${word}-${i}`}
-            className="inline-block mr-[0.25em]"
-            initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            className="mr-[0.2em] inline-block"
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-              duration: 0.6,
-              delay: 0.1 + i * 0.06,
-              ease: EASE_OUT_EXPO,
-            }}
+            transition={{ ...springClean, delay: 0.05 + i * 0.04 }}
           >
             {word}
           </motion.span>
@@ -68,11 +58,11 @@ export function SectionHeader({
 
       {description && (
         <motion.p
-          className="mt-5 text-lg leading-relaxed text-muted-foreground"
-          initial={{ opacity: 0, y: 16 }}
+          className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg"
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT_EXPO }}
+          transition={{ duration: 0.5, delay: 0.2, ease: EASE_OUT_EXPO }}
         >
           {description}
         </motion.p>

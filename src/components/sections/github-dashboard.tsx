@@ -87,7 +87,7 @@ export function GitHubDashboard() {
           { label: "Forks", value: data.totalForks, icon: GitFork },
           { label: "Contributions", value: data.contributions, icon: Activity },
         ].map((stat, i) => (
-          <GlowCard key={stat.label} delay={i * 0.08} className="p-6">
+          <GlowCard key={stat.label} delay={i * 0.08} beam className="p-6">
             <div className="flex items-center justify-between">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent">
                 <stat.icon className="h-5 w-5" />

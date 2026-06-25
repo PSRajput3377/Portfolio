@@ -2,31 +2,34 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { BorderBeam } from "@/components/shared/border-beam";
+import { springClean } from "@/lib/motion";
 
 interface GlowCardProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  beam?: boolean;
 }
 
-export function GlowCard({ children, className, delay = 0 }: GlowCardProps) {
+export function GlowCard({ children, className, delay = 0, beam = false }: GlowCardProps) {
   return (
     <motion.div
       className={cn(
-        "group relative rounded-xl border border-border bg-card",
-        "transition-colors duration-500",
-        "hover:border-accent/30 hover:shadow-[0_0_40px_-12px_var(--glow)]",
-        "glow-border",
+        "group relative overflow-hidden rounded-2xl border border-border/70 bg-card/80 backdrop-blur-sm",
+        "transition-[border-color,box-shadow] duration-500",
+        "hover:border-accent/25 hover:shadow-[0_8px_40px_-16px_var(--glow)]",
         className
       )}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -4 }}
+      transition={{ ...springClean, delay }}
+      whileHover={{ y: -2 }}
       data-cursor="pointer"
     >
-      <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      {beam && <BorderBeam />}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent/[0.04] via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       <div className="relative">{children}</div>
     </motion.div>
   );

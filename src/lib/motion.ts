@@ -1,46 +1,46 @@
+/** Linear-style motion tokens — clean, fast, no blur */
+export const EASE_OUT = [0.25, 0.46, 0.45, 0.94] as const;
 export const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
-export const EASE_IN_OUT = [0.65, 0, 0.35, 1] as const;
+
+export const springClean = {
+  type: "spring" as const,
+  stiffness: 260,
+  damping: 28,
+  mass: 0.8,
+};
+
+export const springSoft = {
+  type: "spring" as const,
+  stiffness: 120,
+  damping: 22,
+  mass: 1,
+};
 
 export const springSnappy = {
   type: "spring" as const,
   stiffness: 400,
-  damping: 30,
+  damping: 32,
 };
 
-export const springSmooth = {
-  type: "spring" as const,
-  stiffness: 100,
-  damping: 20,
+export const tweenClean = {
+  duration: 0.55,
+  ease: EASE_OUT_EXPO,
 };
 
-export const fadeUp = {
-  hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.7,
-      delay,
-      ease: EASE_OUT_EXPO,
-    },
-  }),
-};
+export const viewport = { once: true, margin: "-80px" as const };
 
 export const staggerContainer = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.06, delayChildren: 0.08 },
   },
 };
 
 export const staggerItem = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.5, ease: EASE_OUT_EXPO },
+    transition: { ...tweenClean },
   },
 };

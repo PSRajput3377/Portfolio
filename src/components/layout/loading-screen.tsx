@@ -10,17 +10,16 @@ export function LoadingScreen() {
 
   useEffect(() => {
     const start = Date.now();
-    const duration = 1600;
+    const duration = 1400;
 
     const tick = () => {
-      const elapsed = Date.now() - start;
-      const p = Math.min(elapsed / duration, 1);
+      const p = Math.min((Date.now() - start) / duration, 1);
       setProgress(Math.round(p * 100));
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
 
-    const timer = setTimeout(() => setIsLoading(false), duration + 200);
+    const timer = setTimeout(() => setIsLoading(false), duration + 150);
     return () => clearTimeout(timer);
   }, []);
 
@@ -28,38 +27,26 @@ export function LoadingScreen() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
         >
-          <motion.div
-            className="flex flex-col items-center gap-8"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              className="font-display text-5xl font-normal tracking-tight"
-              initial={{ opacity: 0, y: 20 }}
+          <div className="flex flex-col items-center gap-6">
+            <motion.span
+              className="font-display text-4xl tracking-tight text-foreground"
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              transition={{ duration: 0.4 }}
             >
-              <span className="text-gradient-accent">PK</span>
-            </motion.div>
-
-            <div className="w-48">
-              <div className="h-px w-full overflow-hidden rounded-full bg-muted">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-accent to-accent-secondary"
-                  style={{ width: `${progress}%` }}
-                  transition={{ ease: "linear" }}
-                />
-              </div>
-              <p className="mt-3 text-center text-xs tabular-nums text-muted-foreground">
-                {progress}%
-              </p>
+              PK<span className="text-accent">.</span>
+            </motion.span>
+            <div className="h-px w-32 overflow-hidden rounded-full bg-muted">
+              <motion.div
+                className="h-full bg-accent"
+                style={{ width: `${progress}%` }}
+              />
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
